@@ -20,18 +20,17 @@ mongoose
     age: Number
   });
   
-  const User = mongoose.model("User", userSchema);
+  const Data = mongoose.model("Data", userSchema);
 
   app.get( "/soumi" , async ( req , res ) => {
-    const result= await User.find()
+    const result= await Data.find()
      res.json(result);
 });
 
 app.post( "/soumi" , async ( req , res ) => {
      const { name,age }= req.body;
-     const newUser=new User({name,age});
-     await newUser.save();
-     res.json(newUser);
+     Data.create({ name : name , age : age });
+    
 });
 
 app.listen(port,()=>{
